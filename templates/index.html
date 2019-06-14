@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Private Wall</title>
+</head>
+<body>
+   
+<div class="registration">
+    <form action="/register" method="POST">
+        <table class="table table-hover">
+            <tr><td colspan=2><h1>Registration</h1></td></tr>
+            <tr>
+                <td>First Name</td>
+                <td><input name="first_name" type="text"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input name="last_name" type="text"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input name="email" type="email"></td>
+            <tr>
+                <td colspan=2>
+                    {% with errors = get_flashed_messages(category_filter=["registration_email"]) %}
+                        {% if errors %}
+                            {%- for msg in errors %}
+                                <p class="red">{{ msg }}</p>
+                            {% endfor -%}
+                        {% endif %}
+                    {% endwith %}
+                </td>
+            </tr>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input name="password" type="password"></td>
+            </tr>
+            <tr>
+                <td colspan=2>
+                    {% with errors = get_flashed_messages(category_filter=["registration_password"]) %}
+                        {% if errors %}
+                            {%- for msg in errors %}
+                                <p class="red">{{ msg }}</p>
+                            {% endfor -%}
+                        {% endif %}
+                    {% endwith %}
+                </td>
+            </tr>
+            </tr>
+            <tr>
+                <td>Confirm PW</td>
+                <td><input name="confirmation_password" type="password"></td>
+            </tr>
+            <tr>
+                <td colspan=2>
+                {% with errors = get_flashed_messages(category_filter=["registration_confirmation_password"]) %}
+                    {% if errors %}
+                        {%- for msg in errors %}
+                            <p class="red">{{ msg }}</p>
+                        {% endfor -%}
+                    {% endif %}
+                {% endwith %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2><button class="btn btn-dark">Register</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div class="login">
+    <form action="/login" method="POST">
+        <table class="table table-hover">
+            <tr><td colspan=2><h1>Login</h1></td></tr>
+            <tr>
+                <td>Email</td>
+                <td><input name="email" type="email"></td>
+            </tr>
+            <tr>
+                <td colspan=2>
+                    {% with errors = get_flashed_messages(category_filter=["login_email"]) %}
+                        {% if errors %}
+                            {%- for msg in errors %}
+                                <p class="red">{{ msg }}</p>
+                            {% endfor -%}
+                        {% endif %}
+                    {% endwith %}
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input name="password" type="password"></td>
+            </tr>
+            <tr>
+                <tr>
+                    <td colspan=2>
+                        {% with errors = get_flashed_messages(category_filter=["login_password"]) %}
+                            {% if errors %}
+                                {%- for msg in errors %}
+                                    <p class="red">{{ msg }}</p>
+                                {% endfor -%}
+                            {% endif %}
+                        {% endwith %}
+                    </td>
+                </tr>
+            </tr>
+            <tr>
+                <td colspan=2><button class="btn btn-dark">Log In</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
